@@ -12,17 +12,17 @@ const CSV_FILE_PATH = "data/spiderdatabase.csv";
 const DISPLAY_COLUMNS = [
   "occurrenceID",
   "Bottle_Box_No",
+  "family",
+  "genus",
+  "specificEpithet",
+  "typeStatus",
   "sex",
   "lifeStage",
   "country",
   "stateProvince",
   "locality",
   "decimalLatitude",
-  "decimalLongtitude",
-  "family",
-  "genus",
-  "specificEpithet",
-  "typeStatus",
+  "decimalLongitude",
   "eventDate",
   "day",
   "month",
@@ -48,6 +48,7 @@ const GROUP_FILTERS = {
    Dedicated single-field filters
 ========================================================= */
 const EXACT_FIELD_FILTERS = {
+  box: "Bottle_Box_No",
   province: "stateProvince",
   day: "day",
   month: "month",
@@ -76,7 +77,7 @@ const ALL_DATABASE_FIELDS = [
   "[(DMS) Latitude & Longitude]",
   "elevation",
   "decimalLatitude",
-  "decimalLongtitude",
+  "decimalLongitude",
   "georeferenceVerificationStatus",
   "family",
   "genus",
@@ -126,6 +127,7 @@ let topScrollbarSynced = false;
 ========================================================= */
 const globalSearchInput = document.getElementById("globalSearch");
 const numberFilterInput = document.getElementById("numberFilter");
+const boxFilterInput = document.getElementById("boxFilter");
 
 const localityFilterInput = document.getElementById("localityFilter");
 const provinceFilterInput = document.getElementById("provinceFilter");
@@ -403,6 +405,7 @@ function applyFilters() {
       matchesQuickSearch(record, globalSearchInput.value) &&
 
       matchesFieldGroup(record, numberFilterInput.value, GROUP_FILTERS.number) &&
+      matchesSingleField(record, boxFilterInput.value, EXACT_FIELD_FILTERS.box) &&
 
       matchesFieldGroup(record, localityFilterInput.value, GROUP_FILTERS.locality) &&
       matchesSingleField(record, provinceFilterInput.value, EXACT_FIELD_FILTERS.province) &&
@@ -563,6 +566,7 @@ function applyFiltersAndRender() {
 function resetFilters() {
   globalSearchInput.value = "";
   numberFilterInput.value = "";
+  boxFilterInput.value = "";
 
   localityFilterInput.value = "";
   provinceFilterInput.value = "";
@@ -592,6 +596,7 @@ function resetFilters() {
 [
   globalSearchInput,
   numberFilterInput,
+  boxFilterInput,
   localityFilterInput,
   provinceFilterInput,
   eventFilterInput,
