@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Specimen Catalog</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-text">
+      <h1>Specimen Catalog</h1>
+      <p>Digital catalog viewer for museum specimen records</p>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <h2 class="section-title">Search & Filters</h2>
+
+      <div class="filter-group">
+        <label for="quickSearch">Quick Search</label>
+        <input type="text" id="quickSearch" placeholder="Search across all fields..." />
+      </div>
+
+      <div class="filter-group">
+        <label for="numberSearch">Number</label>
+        <input type="text" id="numberSearch" placeholder="occurrenceID, Bottle_Box_No, associatedID" />
+      </div>
+
+      <div class="filter-group">
+        <label for="localitySearch">Locality</label>
+        <input type="text" id="localitySearch" placeholder="country, stateProvince, locality, LocalityLabel" />
+      </div>
+
+      <div class="filter-group">
+        <label for="eventSearch">Event</label>
+        <input type="text" id="eventSearch" placeholder="eventDate, day, month, year" />
+      </div>
+
+      <div class="filter-group">
+        <label for="taxonomySearch">Taxonomy</label>
+        <input type="text" id="taxonomySearch" placeholder="family, genus, specificEpithet, typeStatus" />
+      </div>
+
+      <div class="filter-group">
+        <label for="sexSearch">Sex</label>
+        <input type="text" id="sexSearch" placeholder="Search sex" />
+      </div>
+
+      <div class="filter-group">
+        <label for="lifeStageSearch">Life Stage</label>
+        <input type="text" id="lifeStageSearch" placeholder="Search lifeStage" />
+      </div>
+
+      <div class="filter-group">
+        <label for="recordedBySearch">Recorded By</label>
+        <input type="text" id="recordedBySearch" placeholder="Search recordedBy or Data_Recorder" />
+      </div>
+
+      <div class="filter-group">
+        <label for="remarksSearch">Remarks / Others</label>
+        <input type="text" id="remarksSearch" placeholder="Remark, georeferenceVerificationStatus, identificationQualifier" />
+      </div>
+
+      <div class="button-row">
+        <button id="resetBtn">Reset Filters</button>
+      </div>
+
+      <div class="footer-note">
+        CSV file should keep the exact original header names, including
+        <strong>decimalLongtitude</strong> and
+        <strong>[(DMS) Latitude & Longitude]</strong>.
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="top-controls">
+        <div class="record-count" id="recordCount">Loading records...</div>
+
+        <div class="rows-control">
+          <label for="rowsPerPage">Rows:</label>
+          <select id="rowsPerPage">
+            <option value="25">25</option>
+            <option value="50" selected>50</option>
+            <option value="100">100</option>
+            <option value="200">200</option>
+            <option value="500">500</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-scroll-top" id="tableScrollTop">
+        <div class="table-scroll-top-inner" id="tableScrollTopInner"></div>
+      </div>
+
+      <div class="table-wrapper" id="tableWrapper">
+        <table id="catalogTable">
+          <thead>
+            <tr id="tableHeadRow"></tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="table-scroll-bottom" id="tableScrollBottom">
+        <div class="table-scroll-bottom-inner" id="tableScrollBottomInner"></div>
+      </div>
+    </main>
+
+    <aside class="details-panel">
+      <h2>Record Details</h2>
+      <div id="detailsContent" class="empty-note">Click a record row to view all fields.</div>
+    </aside>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
