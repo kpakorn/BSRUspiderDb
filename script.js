@@ -1,4 +1,4 @@
-const csvFile = "database.csv";
+const csvFile = "data/spiderdatabase.csv";
 
 let rawData = [];
 let filteredData = [];
