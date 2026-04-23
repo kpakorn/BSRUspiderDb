@@ -3,116 +3,163 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Specimen Catalog</title>
+  <title>Spider Specimen Catalog v0.1</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 </head>
 <body>
-  <header class="header">
-    <div class="header-text">
-      <h1>Specimen Catalog</h1>
-      <p>Digital catalog viewer for museum specimen records</p>
+  <header class="site-header">
+    <div class="header-content">
+      <img src="assets/logo.png" alt="Museum logo" class="site-logo" />
+      <div class="header-text">
+        <h1>Spider Specimen Catalog v0.1</h1>
+        <p>A historical museum specimen records browser made easy. This is an initial site, for more information, please contact pakorn.nlr@gmail.com</p>
+      </div>
     </div>
   </header>
 
   <div class="layout">
     <aside class="sidebar">
-      <h2 class="section-title">Search & Filters</h2>
+      <div class="sidebar-inner">
+        <h2>Search & Filter</h2>
 
-      <div class="filter-group">
-        <label for="quickSearch">Quick Search</label>
-        <input type="text" id="quickSearch" placeholder="Search across all fields..." />
-      </div>
+        <div class="filter-group">
+          <label for="globalSearch">Quick search (other fields)</label>
+          <input type="text" id="globalSearch" placeholder="Search other fields..." />
+          <small>Searches fields not already covered below.</small>
+        </div>
 
-      <div class="filter-group">
-        <label for="numberSearch">Number</label>
-        <input type="text" id="numberSearch" placeholder="occurrenceID, Bottle_Box_No, associatedID" />
-      </div>
+        <div class="filter-group">
+          <label for="numberFilter">Number</label>
+          <input type="text" id="numberFilter" placeholder="Search occurrenceID, Bottle_Box_No, associatedID" />
+          <small>Searches: occurrenceID, Bottle_Box_No, associatedID</small>
+        </div>
 
-      <div class="filter-group">
-        <label for="localitySearch">Locality</label>
-        <input type="text" id="localitySearch" placeholder="country, stateProvince, locality, LocalityLabel" />
-      </div>
+        <div class="filter-group">
+          <label for="localityFilter">Locality</label>
+          <input type="text" id="localityFilter" placeholder="Search locality group..." />
+          <small>Searches: LocalityLabel, country, stateProvince, locality</small>
+        </div>
 
-      <div class="filter-group">
-        <label for="eventSearch">Event</label>
-        <input type="text" id="eventSearch" placeholder="eventDate, day, month, year" />
-      </div>
+        <div class="filter-group">
+          <label for="provinceFilter">Province</label>
+          <input type="text" id="provinceFilter" placeholder="Search stateProvince only" />
+          <small>Searches: stateProvince</small>
+        </div>
 
-      <div class="filter-group">
-        <label for="taxonomySearch">Taxonomy</label>
-        <input type="text" id="taxonomySearch" placeholder="family, genus, specificEpithet, typeStatus" />
-      </div>
+        <div class="filter-group">
+          <label for="eventFilter">Event</label>
+          <input type="text" id="eventFilter" placeholder="Search event group..." />
+          <small>Searches: eventDate, day, month, year</small>
+        </div>
 
-      <div class="filter-group">
-        <label for="sexSearch">Sex</label>
-        <input type="text" id="sexSearch" placeholder="Search sex" />
-      </div>
+        <div class="filter-group">
+          <label for="dayFilter">Day</label>
+          <input type="text" id="dayFilter" placeholder="Search day only" />
+          <small>Searches: day</small>
+        </div>
 
-      <div class="filter-group">
-        <label for="lifeStageSearch">Life Stage</label>
-        <input type="text" id="lifeStageSearch" placeholder="Search lifeStage" />
-      </div>
+        <div class="filter-group">
+          <label for="monthFilter">Month</label>
+          <input type="text" id="monthFilter" placeholder="Search month only" />
+          <small>Searches: month</small>
+        </div>
 
-      <div class="filter-group">
-        <label for="recordedBySearch">Recorded By</label>
-        <input type="text" id="recordedBySearch" placeholder="Search recordedBy or Data_Recorder" />
-      </div>
+        <div class="filter-group">
+          <label for="yearFilter">Year</label>
+          <input type="text" id="yearFilter" placeholder="Search year only" />
+          <small>Searches: year</small>
+        </div>
 
-      <div class="filter-group">
-        <label for="remarksSearch">Remarks / Others</label>
-        <input type="text" id="remarksSearch" placeholder="Remark, georeferenceVerificationStatus, identificationQualifier" />
-      </div>
+        <div class="filter-group">
+          <label for="taxonomyFilter">Taxonomy</label>
+          <input type="text" id="taxonomyFilter" placeholder="Search taxonomy group..." />
+          <small>Searches: family, genus, specificEpithet, typeStatus</small>
+        </div>
 
-      <div class="button-row">
-        <button id="resetBtn">Reset Filters</button>
-      </div>
+        <div class="filter-group">
+          <label for="familyFilter">Family</label>
+          <input type="text" id="familyFilter" placeholder="Search family only" />
+          <small>Searches: family</small>
+        </div>
 
-      <div class="footer-note">
-        CSV file should keep the exact original header names, including
-        <strong>decimalLongtitude</strong> and
-        <strong>[(DMS) Latitude & Longitude]</strong>.
+        <div class="filter-group">
+          <label for="genusFilter">Genus</label>
+          <input type="text" id="genusFilter" placeholder="Search genus only" />
+          <small>Searches: genus</small>
+        </div>
+
+        <div class="filter-group">
+          <label for="specificEpithetFilter">Scientific epithet</label>
+          <input type="text" id="specificEpithetFilter" placeholder="Search specific epithet only" />
+          <small>Searches: specificEpithet</small>
+        </div>
+
+        <div class="filter-group">
+          <label for="sexFilter">Sex</label>
+          <input type="text" id="sexFilter" placeholder="Search sex only" />
+          <small>Searches: sex</small>
+        </div>
+
+        <div class="filter-group">
+          <label for="lifeStageFilter">Life stage</label>
+          <input type="text" id="lifeStageFilter" placeholder="Search lifeStage only" />
+          <small>Searches: lifeStage</small>
+        </div>
+
+        <div class="filter-actions">
+          <button id="resetFiltersBtn" class="reset-btn">Reset filters</button>
+        </div>
+
+        <div class="filter-note">
+          <p><strong>How it works:</strong> all filters work together. Search is case-insensitive and supports multiple words. Example: <em>Heteropoda venatoria</em> requires both words to be present.</p>
+        </div>
       </div>
     </aside>
 
-    <main class="main">
-      <div class="top-controls">
-        <div class="record-count" id="recordCount">Loading records...</div>
+    <main class="main-content">
+      <section class="top-controls">
+        <div class="results-summary">
+          <span id="recordCount">Loading records...</span>
+        </div>
 
-        <div class="rows-control">
-          <label for="rowsPerPage">Rows:</label>
+        <div class="table-controls">
+          <label for="rowsPerPage">Rows to show:</label>
           <select id="rowsPerPage">
             <option value="25">25</option>
             <option value="50" selected>50</option>
             <option value="100">100</option>
-            <option value="200">200</option>
-            <option value="500">500</option>
+            <option value="all">All</option>
           </select>
         </div>
-      </div>
+      </section>
 
-      <div class="table-scroll-top" id="tableScrollTop">
-        <div class="table-scroll-top-inner" id="tableScrollTopInner"></div>
-      </div>
+      <section class="table-section">
+        <div id="loadingMessage" class="status-message">Loading CSV data...</div>
+        <div id="errorMessage" class="status-message error hidden"></div>
+        <div id="noResultsMessage" class="status-message hidden">
+          No results found. Try adjusting your filters.
+        </div>
 
-      <div class="table-wrapper" id="tableWrapper">
-        <table id="catalogTable">
-          <thead>
-            <tr id="tableHeadRow"></tr>
-          </thead>
-          <tbody id="tableBody"></tbody>
-        </table>
-      </div>
+        <div class="table-scroll-top hidden" id="tableScrollTop">
+          <div class="table-scroll-top-inner" id="tableScrollTopInner"></div>
+        </div>
 
-      <div class="table-scroll-bottom" id="tableScrollBottom">
-        <div class="table-scroll-bottom-inner" id="tableScrollBottomInner"></div>
-      </div>
+        <div class="table-wrapper hidden" id="tableWrapper">
+          <table id="specimenTable">
+            <thead id="tableHead"></thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="pagination-section">
+        <div class="pagination-controls">
+          <button id="prevPageBtn">Previous</button>
+          <span id="pageInfo">Page 1</span>
+          <button id="nextPageBtn">Next</button>
+        </div>
+      </section>
     </main>
-
-    <aside class="details-panel">
-      <h2>Record Details</h2>
-      <div id="detailsContent" class="empty-note">Click a record row to view all fields.</div>
-    </aside>
   </div>
 
   <script src="script.js"></script>
