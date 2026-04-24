@@ -191,7 +191,6 @@ function splitQueryIntoTerms(searchText) {
     .filter(Boolean);
 }
 
-/* Every word must be found in a single field */
 function matchesSingleField(record, searchText, fieldName) {
   const terms = splitQueryIntoTerms(searchText);
   if (terms.length === 0) return true;
@@ -200,7 +199,6 @@ function matchesSingleField(record, searchText, fieldName) {
   return terms.every(term => fieldText.includes(term));
 }
 
-/* Every word must be found in the combined grouped fields */
 function matchesFieldGroup(record, searchText, fields) {
   const terms = splitQueryIntoTerms(searchText);
   if (terms.length === 0) return true;
@@ -212,7 +210,6 @@ function matchesFieldGroup(record, searchText, fields) {
   return terms.every(term => combinedText.includes(term));
 }
 
-/* Quick search across remaining fields */
 function matchesQuickSearch(record, searchText) {
   const terms = splitQueryIntoTerms(searchText);
   if (terms.length === 0) return true;
