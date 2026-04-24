@@ -2,7 +2,7 @@
    Spider Specimen Catalog Viewer
    Static GitHub Pages version
    Minimum-change version based on previous bee project
-   Full pipeline with Box filter and sex handling
+   Full pipeline with Box filter and corrected sex handling
 ========================================================= */
 
 const CSV_FILE_PATH = "data/spiderdatabase.csv";
@@ -191,6 +191,7 @@ function splitQueryIntoTerms(searchText) {
     .filter(Boolean);
 }
 
+/* Every word must be found in a single field */
 function matchesSingleField(record, searchText, fieldName) {
   const terms = splitQueryIntoTerms(searchText);
   if (terms.length === 0) return true;
@@ -199,6 +200,7 @@ function matchesSingleField(record, searchText, fieldName) {
   return terms.every(term => fieldText.includes(term));
 }
 
+/* Every word must be found in the combined grouped fields */
 function matchesFieldGroup(record, searchText, fields) {
   const terms = splitQueryIntoTerms(searchText);
   if (terms.length === 0) return true;
@@ -210,6 +212,7 @@ function matchesFieldGroup(record, searchText, fields) {
   return terms.every(term => combinedText.includes(term));
 }
 
+/* Quick search across remaining fields */
 function matchesQuickSearch(record, searchText) {
   const terms = splitQueryIntoTerms(searchText);
   if (terms.length === 0) return true;
@@ -219,6 +222,57 @@ function matchesQuickSearch(record, searchText) {
     .join(" ");
 
   return terms.every(term => combinedText.includes(term));
+}
+
+/* =========================================================
+   Sex normalization and matching
+========================================================= */
+function canonicalizeSexTerm(value) {
+  const text = normalizeText(value);
+
+  if ([
+    "male", "m", "♂", "man", "masculine"
+  ].includes(text)) {
+    return "male";
+  }
+
+  if ([
+    "female", "f", "♀", "woman", "feminine"
+  ].includes(text)) {
+    return "female";
+  }
+
+  if ([
+    "unknown", "unk", "u", "?", "unsexed", "not determined", "undetermined"
+  ].includes(text)) {
+    return "unknown";
+  }
+
+  return text;
+}
+
+function tokenizeSexText(value) {
+  return normalizeText(value)
+    .replace(/[;,/|]+/g, " ")
+    .split(/\s+/)
+    .filter(Boolean)
+    .map(canonicalizeSexTerm);
+}
+
+function matchesSexField(record, searchText, fieldName) {
+  const terms = splitQueryIntoTerms(searchText).map(canonicalizeSexTerm);
+  if (terms.length === 0) return true;
+
+  const rawFieldValue = record[fieldName];
+  const fieldText = normalizeText(rawFieldValue);
+  const sexTokens = tokenizeSexText(rawFieldValue);
+
+  return terms.every(term => {
+    if (term === "male" || term === "female" || term === "unknown") {
+      return sexTokens.includes(term);
+    }
+    return fieldText.includes(term);
+  });
 }
 
 /* =========================================================
@@ -416,7 +470,7 @@ function applyFilters() {
       matchesSingleField(record, familyFilterInput.value, EXACT_FIELD_FILTERS.family) &&
       matchesSingleField(record, genusFilterInput.value, EXACT_FIELD_FILTERS.genus) &&
       matchesSingleField(record, specificEpithetFilterInput.value, EXACT_FIELD_FILTERS.specificEpithet) &&
-      matchesSingleField(record, sexFilterInput.value, EXACT_FIELD_FILTERS.sex) &&
+      matchesSexField(record, sexFilterInput.value, EXACT_FIELD_FILTERS.sex) &&
       matchesSingleField(record, lifeStageFilterInput.value, EXACT_FIELD_FILTERS.lifeStage)
     );
   });
