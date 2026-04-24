@@ -2,6 +2,7 @@
    Spider Specimen Catalog Viewer
    Static GitHub Pages version
    Minimum-change version based on previous bee project
+   Full pipeline with Box filter and sex handling
 ========================================================= */
 
 const CSV_FILE_PATH = "data/spiderdatabase.csv";
@@ -94,7 +95,6 @@ const ALL_DATABASE_FIELDS = [
 
 /* =========================================================
    Quick search fields
-   Excludes everything already covered by the sidebar filters
 ========================================================= */
 const COVERED_FIELDS = Array.from(
   new Set([
