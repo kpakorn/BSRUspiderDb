@@ -18,9 +18,12 @@ The website also served as a fullfillment for a bachelor senior project for Depa
 
 ## Contact
 
-- <b>Pakorn Nalinrachatakan</b> [pakorn.nlr@gmail.com](pakorn.nlr@gmail.com) : Code, Project lead, , Contact point
+- <b>Pakorn Nalinrachatakan, PN</b> [pakorn.nlr@gmail.com](pakorn.nlr@gmail.com) : Code, Project lead, , Contact point
 - Natapot Warrit [natapot.w@chula.ac.th](natapot.w@chula.ac.th) : Project lead, Investigator, Database, Spider research
 - <b>Nattanicha Thanrukprasert</b> : Project lead, Database
 - Chawakorn Kunsete [dreamchawakorn@gmail.com](dreamchawakorn@gmail.com) : Database, Spider research
 - Varat Sivayapram : Database, Spider research
 - * <b>Special Thanks</b> : Chawatat Thanoosing, Wasin Nawanetiwong
+
+## Declaration
+- The code for this project was done by <b>PN</b>, along with the usages of AI for partial-vibe coding (gpt 5.4 thinking).
