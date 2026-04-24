@@ -18,7 +18,7 @@ The website also served as a fullfillment for a bachelor senior project for Depa
 
 ## Contact
 
-- <b>Pakorn Nalinrachatakan, PN</b> [pakorn.nlr@gmail.com](pakorn.nlr@gmail.com) : Code, Project lead, , Contact point
+- <b>Pakorn Nalinrachatakan, PN</b> [pakorn.nlr@gmail.com](pakorn.nlr@gmail.com) : Code, Project lead, Contact point
 - Natapot Warrit [natapot.w@chula.ac.th](natapot.w@chula.ac.th) : Project lead, Investigator, Database, Spider research
 - <b>Nattanicha Thanrukprasert</b> : Project lead, Database
 - Chawakorn Kunsete [dreamchawakorn@gmail.com](dreamchawakorn@gmail.com) : Database, Spider research
