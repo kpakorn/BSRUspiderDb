@@ -213,7 +213,6 @@ body {
   overflow: hidden;
 }
 
-/* top mirrored scrollbar area */
 .table-scroll-top {
   overflow-x: auto;
   overflow-y: hidden;
@@ -227,7 +226,6 @@ body {
   height: 1px;
 }
 
-/* main table scroll area */
 .table-wrapper {
   width: 100%;
   max-width: 100%;
@@ -236,7 +234,6 @@ body {
   scrollbar-gutter: stable;
 }
 
-/* visible scrollbar for Chromium/Edge */
 .table-scroll-top::-webkit-scrollbar,
 .table-wrapper::-webkit-scrollbar {
   height: 12px;
@@ -308,9 +305,6 @@ td {
   color: var(--text);
 }
 
-/* =========================
-   Status Messages
-========================= */
 .status-message {
   padding: 1.2rem;
   color: var(--muted);
@@ -325,9 +319,6 @@ td {
   display: none;
 }
 
-/* =========================
-   Pagination
-========================= */
 .pagination-section {
   margin-top: 1rem;
 }
@@ -364,9 +355,6 @@ td {
   color: var(--header);
 }
 
-/* =========================
-   Responsive
-========================= */
 @media (max-width: 980px) {
   .layout {
     grid-template-columns: 1fr;
